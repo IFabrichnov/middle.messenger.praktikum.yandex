@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.pcss"/>
+    <title>Логин</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="auth-title">Вход</h2>
+        <form class="form">
+            {{> form-field label="Логин" name="login" type="text"}}
+            {{> form-field label="Пароль" name="password" type="password"}}
+            {{> button-auth className="button_auth" type="submit" text="Авторизоваться"}}
+            {{> ref-auth url="register.html" className="ref ref_center" text="Нет аккаунта?"}}
+        </form>
+    </div>
+</body>
+</html>
