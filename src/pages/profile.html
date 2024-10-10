@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.pcss"/>
+    <title>Профиль</title>
+</head>
+<body>
+<div class="profile-container">
+    <div class="profile-back">
+        <a class="back-profile-button" href="/"><img src="/back-profile-button.png" alt="Назад"/></a>
+    </div>
+    <div class="profile-section">
+        <div class="profile-main">
+            {{> profile-avatar name="Иван"}}
+            <div class="profile-info">
+                {{> profile-field label="Почта" value="ifabrichnov@yandex.ru"}}
+                {{> profile-field label="Логин" value="woodyh92"}}
+                {{> profile-field label="Имя" value="Иван"}}
+                {{> profile-field label="Фамилия" value="Фабричнов"}}
+                {{> profile-field label="Имя в чате" value="woodyh92"}}
+                {{> profile-field label="Телефон" value="+7 (999) 999 99 99"}}
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            {{> profile-links profileUrl="./settings.html" label="Изменить данные" color="#007bff"}}
+            {{> profile-links profileUrl="./settings.html" label="Изменить пароль" color="#007bff"}}
+            {{> profile-links profileUrl="./login.html" label="Выйти" color="#FF0000"}}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
