@@ -21,6 +21,7 @@ export default defineConfig({
                 404: resolve(__dirname, 'src/pages/404.html'),
                 500: resolve(__dirname, 'src/pages/500.html'),
                 profile: resolve(__dirname, 'src/pages/profile.html'),
+                profileSettings: resolve(__dirname, 'src/pages/profile-settings.html'),
             },
         },
     }

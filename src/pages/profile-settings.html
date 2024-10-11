@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.pcss"/>
+    <title>Настройки пользователя</title>
+</head>
+<body>
+<div class="profile-container">
+    <div class="profile-back">
+        <a class="back-profile-button" href="/"><img src="/back-profile-button.png" alt="Назад"/></a>
+    </div>
+    <div class="profile-section">
+        <div class="profile-main">
+            <div class="profile-avatar">
+                <div class="profile-settings-avatar">
+                    <img src="../avatar.png" alt="avatar">
+                    <span class="profile-settings-avatar-text">Поменять<br>аватар</span>
+                </div>
+                <input type="file" id="avatar-upload" style="display: none;" />
+            </div>
+            <div class="profile-info">
+                {{> profile-settings-field label="Почта" value="ifabrichnov@yandex.ru"}}
+                {{> profile-settings-field label="Логин" value="woodyh92"}}
+                {{> profile-settings-field label="Имя" value="Иван"}}
+                {{> profile-settings-field label="Фамилия" value="Фабричнов"}}
+                {{> profile-settings-field label="Имя в чате" value="woodyh92"}}
+                {{> profile-settings-field label="Телефон" value="+7 (999) 999 99 99"}}
+            </div>
+        </div>
+
+        <div class="profile-password">
+            {{> profile-password-field label="Старый пароль" type="password" placeholder="••••••"}}
+            {{> profile-password-field label="Новый пароль" type="password" placeholder="••••••"}}
+            {{> profile-password-field label="Повторите новый пароль" type="password" placeholder="••••••"}}
+
+            {{> button-auth className="button_settings" type="submit" text="Сохранить"}}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.profile-settings-avatar').addEventListener('click', function() {
+        document.getElementById('avatar-upload').click();
+    });
+</script>
+
+</body>
+</html>

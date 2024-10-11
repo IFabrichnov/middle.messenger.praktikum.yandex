@@ -102,6 +102,7 @@
 
 .profile-container {
     display: flex;
+    height: 100vh;
 
     img {
         position: relative;
@@ -178,7 +179,7 @@
     }
 }
 
-.profile-actions {
+.profile-actions, .profile-password {
     width: 510px;
     margin: 0 auto;
     display: flex;
@@ -210,4 +211,102 @@
     }
 }
 
+.profile-password-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
 
+    &:not(:last-child) {
+        border-bottom: 1px solid #EAEAEA;
+    }
+
+    span {
+        font-size: 16px;
+    }
+
+    input {
+        width: 50%;
+        text-align: right;
+        border: none;
+        color: #999999;
+    }
+}
+
+.profile-settings-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #EAEAEA;
+
+    span {
+        font-size: 16px;
+    }
+
+    input {
+        width: 50%;
+        text-align: right;
+        border: none;
+        color: #999999;
+        font-size: 16px;
+
+        &:focus {
+            outline: none;
+            border-bottom: 1px solid #3369F3;
+        }
+    }
+}
+
+.profile-settings-avatar {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-settings-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.profile-settings-avatar:hover img {
+    opacity: 0.5;
+}
+
+.profile-settings-avatar:hover .profile-settings-avatar-text {
+    opacity: 1;
+}
+
+.profile-settings-avatar-text {
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+}
+
+.button_settings {
+    width: 280px;
+    margin-top: 50px;
+    background-color: #3369F3;
+    color: white;
+    border-radius: 8px;
+    line-height: 12px;
+    height: 37px;
+    padding: 12px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
