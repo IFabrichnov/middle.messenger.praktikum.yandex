@@ -8,6 +8,8 @@
 ## 📃 Макет в Figma
 - [Макет](https://www.figma.com/design/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1&node-type=canvas)
 
+## 🖥️ Проект, развернутый на Netlify
+- [Проект](https://middle-messenger-praktikum-yandex-fab.netlify.app/)
 
 ## 🔌 Запуск проекта
 Изначально клонируем локально репозиторий на свой ПК
