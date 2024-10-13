@@ -22,6 +22,7 @@ export default defineConfig({
                 500: resolve(__dirname, 'src/pages/500.html'),
                 profile: resolve(__dirname, 'src/pages/profile.html'),
                 profileSettings: resolve(__dirname, 'src/pages/profile-settings.html'),
+                chat: resolve(__dirname, 'src/pages/chat.html'),
             },
         },
     }

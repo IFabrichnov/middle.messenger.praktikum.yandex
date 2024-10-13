@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.pcss"/>
+    <title>Чат</title>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-list">
+        <div class="profile-link-container">
+            <a href="./profile.html" class="profile-link">Профиль ></a>
+        </div>
+        <div class="chat-search-container">
+            <input type="text" class="chat-search" placeholder="Поиск...">
+        </div>
+        {{> chat-item name="Андрей" text="Изображение" time="10:49" count=2}}
+        {{> chat-item name="Киноклуб" text="Вы: стикер" time="12:00"}}
+        {{> chat-item name="Илья" text="Друзья, у меня для вас выпуск..." time="15:12" count=4}}
+    </div>
+    <div class="chat-window">
+        <p class="empty-message">Выберите чат чтобы отправить сообщение</p>
+    </div>
+</div>
+</body>
+</html>
