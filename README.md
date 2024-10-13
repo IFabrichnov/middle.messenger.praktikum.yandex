@@ -18,7 +18,11 @@ git clone https://github.com/IFabrichnov/middle.messenger.praktikum.yandex.git
 ```
 npm i
 ```
-И запускаем проект
+Сборка и запуск проекта выполняются по команде
 ```
 npm run start
+```
+Для запуска проекта в режиме разработки используйте
+```
+npm run dev
 ```
