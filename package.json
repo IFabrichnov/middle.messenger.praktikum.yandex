@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "messenger-in-js",
   "main": "index.js",
+  "engines": {
+    "node": "20.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "start": "vite build && node server.js",
