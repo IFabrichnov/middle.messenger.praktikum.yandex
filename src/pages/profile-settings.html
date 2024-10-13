@@ -9,7 +9,7 @@
     <title>Настройки пользователя</title>
 </head>
 <body>
-<div class="profile-container">
+<main class="profile-container">
     <div class="profile-back">
         <a class="back-profile-button" href="/"><img src="/back-profile-button.png" alt="Назад"/></a>
     </div>
@@ -20,27 +20,30 @@
                     <img src="../avatar.png" alt="avatar">
                     <span class="profile-settings-avatar-text">Поменять<br>аватар</span>
                 </div>
-                <input type="file" id="avatar-upload" style="display: none;" />
+                <input name="avatar" type="file" id="avatar-upload" style="display: none;" />
             </div>
-            <div class="profile-info">
-                {{> profile-settings-field label="Почта" value="ifabrichnov@yandex.ru"}}
-                {{> profile-settings-field label="Логин" value="woodyh92"}}
-                {{> profile-settings-field label="Имя" value="Иван"}}
-                {{> profile-settings-field label="Фамилия" value="Фабричнов"}}
-                {{> profile-settings-field label="Имя в чате" value="woodyh92"}}
-                {{> profile-settings-field label="Телефон" value="+7 (999) 999 99 99"}}
-            </div>
+            <form method="POST">
+                <div class="profile-info">
+                    {{> profile-settings-field label="Почта" value="ifabrichnov@yandex.ru" name="email"}}
+                    {{> profile-settings-field label="Логин" value="woodyh92" name="login"}}
+                    {{> profile-settings-field label="Имя" value="Иван" name="first_name"}}
+                    {{> profile-settings-field label="Фамилия" value="Фабричнов" name="second_name"}}
+                    {{> profile-settings-field label="Имя в чате" value="woodyh92" name="display_name"}}
+                    {{> profile-settings-field label="Телефон" value="+7 (999) 999 99 99" name="phone"}}
+                </div>
+                <div class="profile-password">
+                    {{> profile-password-field label="Старый пароль" type="password" placeholder="••••••" name="oldPassword"}}
+                    {{> profile-password-field label="Новый пароль" type="password" placeholder="••••••" name="newPassword"}}
+                    {{> profile-password-field label="Повторите новый пароль" type="password" placeholder="••••••" name="newPassword"}}
+
+                    {{> button-auth className="button_settings" type="submit" text="Сохранить"}}
+                </div>
+            </form>
         </div>
 
-        <div class="profile-password">
-            {{> profile-password-field label="Старый пароль" type="password" placeholder="••••••"}}
-            {{> profile-password-field label="Новый пароль" type="password" placeholder="••••••"}}
-            {{> profile-password-field label="Повторите новый пароль" type="password" placeholder="••••••"}}
 
-            {{> button-auth className="button_settings" type="submit" text="Сохранить"}}
-        </div>
     </div>
-</div>
+</main>
 
 <script>
     document.querySelector('.profile-settings-avatar').addEventListener('click', function() {

@@ -7,13 +7,13 @@
     <title>Чат</title>
 </head>
 <body>
-<div class="chat-container">
+<main class="chat-container">
     <div class="chat-list">
         <div class="profile-link-container">
             <a href="./profile.html" class="profile-link">Профиль ></a>
         </div>
         <div class="chat-search-container">
-            <input type="text" class="chat-search" placeholder="Поиск...">
+            <input name="message" type="text" class="chat-search" placeholder="Поиск...">
         </div>
         {{> chat-item name="Андрей" text="Изображение" time="10:49" count=2}}
         {{> chat-item name="Киноклуб" text="Вы: стикер" time="12:00"}}
@@ -22,6 +22,6 @@
     <div class="chat-window">
         <p class="empty-message">Выберите чат чтобы отправить сообщение</p>
     </div>
-</div>
+</main>
 </body>
 </html>
