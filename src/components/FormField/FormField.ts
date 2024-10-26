@@ -11,6 +11,7 @@ interface Props {
   error?: boolean;
   errorText?: string;
   placeholder?: string;
+  onBlur?: EventListener;
 }
 
 export default class FormField extends Block {
@@ -26,6 +27,7 @@ export default class FormField extends Block {
           type: props.type,
           className: props.className,
           placeholder: props.placeholder,
+          onBlur: props.onBlur,
         },
       ),
     });

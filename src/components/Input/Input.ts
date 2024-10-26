@@ -7,13 +7,16 @@ interface Props {
   type: string;
   className?: string;
   placeholder?: string;
+  onBlur?: EventListener;
 }
 
 export default class Input extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      events: {},
+      events: {
+        blur: props.onBlur,
+      },
     });
   }
 

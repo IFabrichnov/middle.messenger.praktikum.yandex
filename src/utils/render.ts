@@ -1,11 +1,13 @@
 import Page404 from '../pages/Page404/Page404.ts';
-import LoginPage from "../pages/login/LoginPage.ts";
-import Navbar from "../pages/Navbar/Navbar.ts";
-import Page500 from "../pages/Page500/Page500.ts";
+import LoginPage from '../pages/login/LoginPage.ts';
+import Navbar from '../pages/Navbar/Navbar.ts';
+import Page500 from '../pages/Page500/Page500.ts';
+import RegisterPage from '../pages/register/RegisterPage.ts';
 
 const ROUTES = {
   main: Navbar,
   login: LoginPage,
+  register: RegisterPage,
   page500: Page500
 };
 
