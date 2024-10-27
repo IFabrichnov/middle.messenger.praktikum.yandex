@@ -14,6 +14,7 @@ export default class Page500 extends Block {
     super({
       ...props,
       Ref: new Ref({
+        className: 'ref ref_center',
         Content: 'Назад к чатам',
         onClick() {
           render('main');

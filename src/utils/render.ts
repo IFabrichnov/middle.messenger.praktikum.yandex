@@ -3,10 +3,14 @@ import LoginPage from '../pages/login/LoginPage.ts';
 import Navbar from '../pages/Navbar/Navbar.ts';
 import Page500 from '../pages/Page500/Page500.ts';
 import RegisterPage from '../pages/register/RegisterPage.ts';
+import ProfilePage from '../pages/profile/ProfilePage.ts';
+import ProfileSettings from '../pages/profileSettings/ProfileSettings.ts';
 
 const ROUTES = {
   main: Navbar,
   login: LoginPage,
+  profile: ProfilePage,
+  profileSettings: ProfileSettings,
   register: RegisterPage,
   page500: Page500
 };

@@ -17,6 +17,7 @@ export default class RegisterPage extends Block {
     super({
       Ref: new Ref({
         Content: 'Вход',
+        className: 'ref ref_center',
         onClick: () => {
           render('login');
         },

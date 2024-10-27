@@ -3,7 +3,7 @@ import Block from '../../utils/Block.ts';
 import Ref from '../../components/Ref/Ref.ts';
 import render from '../../utils/render.ts';
 
-const pages = ['main', 'login',  'register',  'page500',  'page404',];
+const pages = ['main', 'login',  'register', 'profile', 'profileSettings', 'page500',  'page404'];
 
 export default class Navbar extends Block {
   constructor() {
@@ -11,6 +11,7 @@ export default class Navbar extends Block {
       Refs: pages.map((name) => {
         return new Ref({
           Content: name,
+          className: 'ref ref_center',
           onClick() {
             render(name as any);
           },

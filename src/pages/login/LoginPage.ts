@@ -50,6 +50,7 @@ export default class LoginPage extends Block {
         text: 'Авторизоваться',
       }),
       Ref: new Ref({
+        className: 'ref ref_center',
         Content: 'Нет аккаунта?',
         onClick: () => {
           render('register');

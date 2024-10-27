@@ -1,7 +1,7 @@
 import Block from '../../utils/Block.ts';
 import Input from '../Input/Input';
-import template from './FormField.hbs';
-import './FormField.pcss';
+import template from './formField.hbs';
+import './formField.pcss';
 
 interface Props {
   label: string;
