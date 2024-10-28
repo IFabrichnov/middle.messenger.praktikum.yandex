@@ -5,6 +5,7 @@ import Page500 from '../pages/Page500/Page500.ts';
 import RegisterPage from '../pages/register/RegisterPage.ts';
 import ProfilePage from '../pages/profile/ProfilePage.ts';
 import ProfileSettings from '../pages/profileSettings/ProfileSettings.ts';
+import Chat from "../pages/chat/Chat.ts";
 
 const ROUTES = {
   main: Navbar,
@@ -12,6 +13,7 @@ const ROUTES = {
   profile: ProfilePage,
   profileSettings: ProfileSettings,
   register: RegisterPage,
+  chat: Chat,
   page500: Page500
 };
 
