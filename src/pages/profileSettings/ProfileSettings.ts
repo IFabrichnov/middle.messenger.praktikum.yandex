@@ -282,4 +282,3 @@ export default class ProfileSettings extends Block {
     return this.compile(template, this.props);
   }
 }
-
