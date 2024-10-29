@@ -7,7 +7,7 @@
     "lib": [
       "ESNext",
       "ES2020",
-      "DOM",
+      "DOM"
     ],
     "types": [
       "vite/client"
