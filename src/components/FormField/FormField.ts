@@ -3,7 +3,7 @@ import Input from '../Input/Input';
 import template from './formField.hbs';
 import './formField.pcss';
 
-interface Props {
+interface IProps {
   label: string;
   name: string;
   type: string;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default class FormField extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       error: props.error,
       errorText: props.errorText,

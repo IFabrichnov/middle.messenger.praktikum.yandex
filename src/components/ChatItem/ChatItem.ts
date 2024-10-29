@@ -2,7 +2,7 @@ import Block from '../../utils/Block.ts';
 import template from './chatItem.hbs';
 import './chatItem.pcss';
 
-interface Props {
+interface IProps {
   name: string;
   text: string;
   time: string;
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default class ChatItem extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
   }
 

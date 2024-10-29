@@ -4,13 +4,13 @@ import Block from '../../utils/Block';
 import Ref from '../../components/Ref/Ref.ts';
 import template from '../../partials/errorPartial/errorPartial.hbs';
 
-interface Props {
+interface IProps {
   errorCode: string;
   errorMessage: string;
 }
 
 export default class Page404 extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       ...props,
       Ref: new Ref({

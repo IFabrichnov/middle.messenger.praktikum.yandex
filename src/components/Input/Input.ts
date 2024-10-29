@@ -1,7 +1,7 @@
 import Block from '../../utils/Block.ts';
 import template from './input.hbs';
 
-interface Props {
+interface IProps {
   id?: string;
   name: string;
   type: string;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default class Input extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       ...props,
       events: {

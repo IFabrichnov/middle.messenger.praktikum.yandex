@@ -29,13 +29,12 @@ export default function render(name: keyof typeof ROUTES) {
     if (name === 'page500') {
       page = new Page500({ errorCode: '500', errorMessage: 'Мы уже фиксим' });
     } else {
-      page = new Page();
+      page = new Page({});
     }
   } else {
     page = new Page404({ errorCode: '404', errorMessage: 'Не туда попали' });
   }
 
   root.append(page.getContent()!);
-
   page.dispatchComponentDidMount();
 }

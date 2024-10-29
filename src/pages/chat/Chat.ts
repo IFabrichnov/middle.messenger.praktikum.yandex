@@ -10,7 +10,7 @@ export default class Chat extends Block {
   constructor() {
     super({
       Ref: new Ref({
-        className: 'profile-link',
+        className: 'chat-link',
         Content: 'Профиль >',
         onClick: () => {
           render('profile');

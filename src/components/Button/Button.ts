@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './button.hbs';
 import './button.pcss';
 
-interface Props {
+interface IProps {
   text: string;
   className?: string;
   type?: 'submit' | 'button';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default class Button extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       ...props,
       events: {

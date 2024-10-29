@@ -2,14 +2,14 @@ import Block from '../../utils/Block';
 import './ref.pcss';
 import template from './ref.hbs';
 
-interface Props {
+interface IProps {
   Content: string;
   onClick?: EventListener;
   className?: string;
 }
 
 export default class Ref extends Block {
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super({
       ...props,
       events: {

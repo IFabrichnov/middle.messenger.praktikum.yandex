@@ -4,15 +4,15 @@ import render from '../../utils/render';
 import Block from '../../utils/Block';
 import Ref from '../../components/Ref/Ref.ts';
 
-interface Props {
-  errorCode: string;
-  errorMessage: string;
+interface IProps {
+  errorCode?: string;
+  errorMessage?: string;
 }
 
 export default class Page500 extends Block {
-  constructor(props: Props) {
+  constructor(props?: IProps) {
     super({
-      ...props,
+      ...props || 0,
       Ref: new Ref({
         className: 'ref ref_center',
         Content: 'Назад к чатам',

@@ -13,7 +13,8 @@
     "start": "vite build && npm run build-ts && node dist/server.js",
     "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . && stylelint \"**/*.pcss\""
+    "lint": "eslint . && stylelint \"**/*.pcss\"",
+    "lint:typescript": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
