@@ -9,9 +9,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-ts": "tsc src/server.ts --esModuleInterop --outDir dist",
-    "start": "vite build && npm run build-ts && node dist/server.js",
-    "build": "vite build",
+    "start":  "npm run build & node server",
+    "build": "tsc && vite build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . && stylelint \"**/*.pcss\"",
     "lint:typescript": "tsc --noEmit"
