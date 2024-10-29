@@ -1,0 +1,16 @@
+<div class="chat-container">
+  <div class="chat-list">
+    <div class="profile-link-container">
+      {{{ Ref }}}
+    </div>
+    <div class="chat-search-container">
+      <input name="message" type="text" class="chat-search" placeholder="Поиск...">
+    </div>
+    {{# each ChatItems}}
+      {{{this}}}
+    {{/each}}
+  </div>
+  <div class="chat-window">
+    <p class="empty-message">Выберите чат чтобы отправить сообщение</p>
+  </div>
+</div>
