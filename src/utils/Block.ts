@@ -1,7 +1,12 @@
 import EventBus from './EventBus.ts';
 import { v4 as makeUUID } from 'uuid';
 
-class Block<P extends Record<string, any> = any> {
+interface BlockProps {
+  events?: Record<string, () => void>;
+  [key: string]: unknown;
+}
+
+class Block<P extends BlockProps = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',

@@ -1,0 +1,46 @@
+.chat-controls {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  align-items: center;
+  border-top: 1px solid #EAEAEA;
+  padding: 10px 0;
+
+  &__attach {
+    display: flex;
+    height: fit-content;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    background-color: transparent;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: #EAEAEA;
+    }
+  }
+
+  &__input {
+    background: #EFEFEF;
+    margin: 0 12px;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+  }
+
+  &__input-label {
+    display: none;
+  }
+
+  &__send {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    height: fit-content;
+    padding: 6px;
+    align-items: center;
+  }
+}

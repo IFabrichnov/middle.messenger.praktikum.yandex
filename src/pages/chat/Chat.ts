@@ -5,6 +5,8 @@ import render from '../../utils/render.ts';
 import ChatItem from '../../components/ChatItem/ChatItem.ts';
 import '../../pages/profile/profilePage.pcss';
 import './chat.pcss';
+import ChatMessage from '../../components/ChatMessage/ChatMessage.ts';
+import ChatMessageButtons from '../../components/ChatMessageButtons/ChatMessageButtons.ts';
 
 export default class Chat extends Block {
   constructor() {
@@ -16,6 +18,8 @@ export default class Chat extends Block {
           render('profile');
         },
       }),
+      ChatMessage: new ChatMessage(),
+      ChatMessageButtons: new ChatMessageButtons(),
       ChatItems: [
         new ChatItem({
           name: 'Андрей',

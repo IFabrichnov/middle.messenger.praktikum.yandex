@@ -6,11 +6,13 @@
   "engines": {
     "node": "20.0.0"
   },
-  "type": "module",
   "scripts": {
     "dev": "vite",
-    "start":  "npm run build & node server",
+    "start": "vite build && npm run build:server && npm run serve",
     "build": "tsc && vite build",
+    "build:server": "tsc src/server.ts --esModuleInterop --outDir dist",
+    "preview": "vite preview",
+    "serve": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . && stylelint \"**/*.pcss\"",
     "lint:typescript": "tsc --noEmit"
