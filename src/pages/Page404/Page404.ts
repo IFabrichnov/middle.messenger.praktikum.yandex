@@ -1,5 +1,4 @@
 import '../../partials/errorPartial/errorPartial.pcss';
-import render from '../../utils/render';
 import Block from '../../utils/Block';
 import Ref from '../../components/Ref/Ref.ts';
 import template from '../../partials/errorPartial/errorPartial.hbs';
@@ -17,7 +16,7 @@ export default class Page404 extends Block {
         className: 'ref ref_center',
         Content: 'Назад к чатам',
         onClick() {
-          render('main');
+          // render('main');
         },
       }),
     });

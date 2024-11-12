@@ -1,7 +1,6 @@
 import template from './chat.hbs';
 import Block from '../../utils/Block.ts';
 import Ref from '../../components/Ref/Ref.ts';
-import render from '../../utils/render.ts';
 import ChatItem from '../../components/ChatItem/ChatItem.ts';
 import '../../pages/profile/profilePage.pcss';
 import './chat.pcss';
@@ -14,9 +13,7 @@ export default class Chat extends Block {
       Ref: new Ref({
         className: 'chat-link',
         Content: 'Профиль >',
-        onClick: () => {
-          render('profile');
-        },
+        href: '/profile'
       }),
       ChatMessage: new ChatMessage(),
       ChatMessageButtons: new ChatMessageButtons(),

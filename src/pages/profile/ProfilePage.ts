@@ -1,9 +1,9 @@
 import template from './profilePage.hbs';
 import Block from '../../utils/Block.ts';
 import Ref from '../../components/Ref/Ref.ts';
-import render from '../../utils/render.ts';
 import ProfileField from '../../components/ProfileField/ProfileField.ts';
 import '../../pages/profile/profilePage.pcss';
+import AuthController from "../../controllers/AuthController.ts";
 
 export default class ProfilePage extends Block {
   constructor() {
@@ -11,9 +11,7 @@ export default class ProfilePage extends Block {
       Ref: new Ref({
         className: 'back-profile-button',
         Content: '<img src="../back-profile-button.png" alt="Назад"/>',
-        onClick: () => {
-          render('main');
-        },
+        href: '/messenger',
       }),
       ProfileFields: [
          new ProfileField({
@@ -47,27 +45,16 @@ export default class ProfilePage extends Block {
           name: 'phone',
         }),
       ],
-      SettingsRefs: [
-        new Ref({
-          Content: 'Изменить пароль',
-          className: 'profile-link',
-          onClick: () => {
-            render('register');
-          },
-        }),
-        new Ref({
-          Content: 'Изменить данные',
-          className: 'profile-link',
-          onClick: () => {
-            render('register');
-          },
-        }),
-      ],
+      SettingsRef: new Ref({
+        Content: 'Изменить данные',
+        className: 'profile-link',
+        href: '/settings',
+      }),
       ExitRef: new Ref({
         Content: 'Выйти',
         className: 'profile-link error-link',
         onClick: () => {
-          render('main');
+          AuthController.logout();
         },
       }),
     });

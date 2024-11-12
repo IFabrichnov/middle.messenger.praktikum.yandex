@@ -1,5 +1,4 @@
 import Block from '../../utils/Block.ts';
-import render from '../../utils/render.ts';
 import template from './profileSettings.hbs';
 import Button from '../../components/Button/Button.ts';
 import Ref from '../../components/Ref/Ref.ts';
@@ -131,9 +130,7 @@ export default class ProfileSettings extends Block {
         Ref: new Ref({
           className: 'back-profile-button',
           Content: '<img src="../back-profile-button.png" alt="Назад"/>',
-          onClick: () => {
-            render('main');
-          },
+          href: '/profile'
         }),
 
         PasswordInputs: [
@@ -225,7 +222,7 @@ export default class ProfileSettings extends Block {
             }
 
             console.log(values);
-            render('profile');
+            // render('profile');
           },
         },
       },

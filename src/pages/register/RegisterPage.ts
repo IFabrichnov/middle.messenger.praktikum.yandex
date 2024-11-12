@@ -1,7 +1,6 @@
 import Block from '../../utils/Block.ts';
 import FormField from '../../components/FormField/FormField.ts';
 import Ref from '../../components/Ref/Ref.ts';
-import render from '../../utils/render.ts';
 import Button from '../../components/Button/Button';
 import template from './registerPage.hbs';
 import {
@@ -11,6 +10,8 @@ import {
   validatorPhone,
   validatorSecondName
 } from '../../utils/validators.ts';
+import AuthController from '../../controllers/AuthController.ts';
+import { ISignUpData } from '../../api/authAPI.ts';
 
 export default class RegisterPage extends Block {
   constructor() {
@@ -18,9 +19,7 @@ export default class RegisterPage extends Block {
       Ref: new Ref({
         Content: 'Вход',
         className: 'ref ref_center',
-        onClick: () => {
-          render('login');
-        },
+        href: '/',
       }),
       Button: new Button({
         type: 'submit',
@@ -171,9 +170,7 @@ export default class RegisterPage extends Block {
             return;
           }
 
-          console.log(values);
-
-          render('main');
+          AuthController.signup(values as ISignUpData);
         },
       },
     });

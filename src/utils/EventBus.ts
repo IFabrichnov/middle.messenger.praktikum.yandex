@@ -18,7 +18,8 @@ export default class EventBus<
 
   off<Event extends EventKeys<EventType>>(event: Event, callback: EventCallback<Data[Event]>) {
     if (!this.eventListeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      console.warn(`Попытка удалить слушателя для несуществующего события: ${event}`);
+      return;
     }
     this.eventListeners[event] = this.eventListeners[event]!.filter(
       (listener) => listener !== callback
@@ -27,7 +28,8 @@ export default class EventBus<
 
   emit<Event extends EventKeys<EventType>>(event: Event, ...args: Data[Event]) {
     if (!this.eventListeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+      console.warn(`Нет подписчиков на событие: ${event}`);
+      return;
     }
     this.eventListeners[event]!.forEach((listener) => {
       listener(...args);

@@ -1,19 +1,22 @@
 import Block from '../../utils/Block';
 import './ref.pcss';
 import template from './ref.hbs';
+import { withRouter } from '../../utils/router/withRouter.ts';
+import { BlockProps } from '../../types/blockProps.ts';
 
-interface IProps {
+interface IProps extends BlockProps  {
   Content: string;
   onClick?: EventListener;
   className?: string;
+  href?: string;
 }
 
-export default class Ref extends Block {
+class Ref extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,
       events: {
-        click: props.onClick,
+        click: props.onClick || function () { props.router.go(props.href) },
       },
     });
   }
@@ -22,3 +25,5 @@ export default class Ref extends Block {
     return this.compile(template, this.props);
   }
 }
+
+export default withRouter(Ref);

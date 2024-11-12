@@ -1,8 +1,14 @@
 import express from 'express';
+import path from 'path';
 
-const app = express();
 const PORT = 3000;
 
-app.use(express.static('dist'));
+const app = express();
+
+app.use(express.static(path.join(__dirname)));
+
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
