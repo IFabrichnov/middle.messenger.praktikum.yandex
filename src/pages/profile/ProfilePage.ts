@@ -3,48 +3,39 @@ import Block from '../../utils/Block.ts';
 import Ref from '../../components/Ref/Ref.ts';
 import ProfileField from '../../components/ProfileField/ProfileField.ts';
 import '../../pages/profile/profilePage.pcss';
-import AuthController from "../../controllers/AuthController.ts";
+import AuthController from '../../controllers/AuthController.ts';
+import { BlockProps } from '../../types/blockProps.ts';
+import { IUser } from '../../api/authAPI.ts';
+import { componentWithStore } from '../../utils/Store.ts';
 
-export default class ProfilePage extends Block {
-  constructor() {
+interface IProps extends BlockProps{
+  user: IUser;
+}
+
+const profileData = {
+  id: 'ID',
+  first_name: 'Имя',
+  second_name: 'Фамилия',
+  login: 'Логин',
+  display_name: 'Имя в чате',
+  email: 'Почта',
+  phone: 'Телефон',
+};
+
+class ProfilePage extends Block<IProps> {
+  constructor(props: IProps) {
     super({
+      avatar: props.user?.avatar,
+      userName: props.user?.login,
       Ref: new Ref({
         className: 'back-profile-button',
         Content: '<img src="../back-profile-button.png" alt="Назад"/>',
         href: '/messenger',
       }),
-      ProfileFields: [
-         new ProfileField({
-          label: 'Почта',
-          value: 'ifabrichnov@yandex.ru',
-          name: 'email',
-        }),
-         new ProfileField({
-          label: 'Логин',
-          value: 'woodyh92',
-          name: 'login',
-        }),
-         new ProfileField({
-          label: 'Имя',
-          value: 'Иван',
-          name: 'first_name',
-        }),
-         new ProfileField({
-          label: 'Фамилия',
-          value: 'Фабричнов',
-          name: 'second_name',
-        }),
-        new ProfileField({
-          label: 'Имя в чате',
-          value: 'woodyh92',
-          name: 'display_name',
-        }),
-        new ProfileField({
-          label: 'Телефон',
-          value: '+7 (999) 999 99 99',
-          name: 'phone',
-        }),
-      ],
+      ProfileFields: Object.entries(profileData).map(([key, value]) => new ProfileField({
+        label: value,
+        value: props.user && props.user[key as keyof IUser] ? props.user[key as keyof IUser].toString() : 'Нет данных',
+      })),
       SettingsRef: new Ref({
         Content: 'Изменить данные',
         className: 'profile-link',
@@ -64,3 +55,6 @@ export default class ProfilePage extends Block {
     return this.compile(template, this.props);
   }
 }
+
+const userStore = componentWithStore((state) => ({ user: state.user }));
+export default userStore(ProfilePage);

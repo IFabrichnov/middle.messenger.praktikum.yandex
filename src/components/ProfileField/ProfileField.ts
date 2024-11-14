@@ -4,7 +4,6 @@ import Block from '../../utils/Block.ts';
 interface IProps {
   label: string;
   value: string;
-  name: string;
 }
 
 export default class ProfileField extends Block {

@@ -11,9 +11,16 @@ import {
   validatorPassword, validatorPhone,
   validatorSecondName
 } from '../../utils/validators.ts';
+import { BlockProps } from '../../types/blockProps.ts';
+import { IUser } from '../../api/authAPI.ts';
+import { componentWithStore } from '../../utils/Store.ts';
 
-export default class ProfileSettings extends Block {
-  constructor() {
+interface IProps extends BlockProps {
+  user: IUser;
+}
+
+class ProfileSettings extends Block<IProps> {
+  constructor(props: IProps)  {
     super(
       {
         ProfileFieldsSettings: [
@@ -21,7 +28,8 @@ export default class ProfileSettings extends Block {
             label: 'Почта',
             name: 'email',
             type: 'email',
-            placeholder: 'ifabrichnov@yandex.ru',
+            placeholder: props.user.email,
+            value: props.user.email,
             errorText: 'Латиница, может включать цифры и спецсимволы вроде дефиса и подчёркивания, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -39,7 +47,8 @@ export default class ProfileSettings extends Block {
             label: 'Логин',
             name: 'login',
             type: 'text',
-            placeholder: 'woodyh92',
+            placeholder: props.user.login,
+            value: props.user.login,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -57,7 +66,8 @@ export default class ProfileSettings extends Block {
             label: 'Имя',
             name: 'first_name',
             type: 'text',
-            placeholder: 'Иван',
+            placeholder: props.user.first_name,
+            value: props.user.first_name,
             errorText: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -75,7 +85,8 @@ export default class ProfileSettings extends Block {
             label: 'Фамилия',
             name: 'second_name',
             type: 'text',
-            placeholder: 'Фабричнов',
+            placeholder: props.user.second_name,
+            value: props.user.second_name,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -93,7 +104,8 @@ export default class ProfileSettings extends Block {
             label: 'Имя в чате',
             name: 'display_name',
             type: 'text',
-            placeholder: 'woodyh92',
+            placeholder: props.user.display_name,
+            value: props.user.display_name,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -111,7 +123,8 @@ export default class ProfileSettings extends Block {
             label: 'Телефон',
             name: 'phone',
             type: 'tel',
-            placeholder: '+7 (999) 999 99 99',
+            placeholder: props.user.phone,
+            value: props.user.phone,
             errorText: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -138,7 +151,8 @@ export default class ProfileSettings extends Block {
             name: 'newPassword',
             type: 'password',
             label: 'Новый пароль',
-            placeholder: '********',
+            placeholder: props.user.phone,
+            value: props.user.phone,
             errorText: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -279,3 +293,6 @@ export default class ProfileSettings extends Block {
     return this.compile(template, this.props);
   }
 }
+
+const withUser = componentWithStore((state) => ({ user: state.user }));
+export default withUser(ProfileSettings);
