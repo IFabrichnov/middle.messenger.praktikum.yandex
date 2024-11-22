@@ -35,20 +35,20 @@ const store = new Store();
 
 (window as any).store = store;
 
-export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
-  return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
+export function componentWithStore<SP extends Partial<State>>(
+    mapStateToProps: (state: State) => SP
+) {
+  return function wrap<P extends BlockProps>(
+      Component: typeof Block<P>
+  ): new (props: Omit<P, keyof SP> & SP) => Block<Omit<P, keyof SP> & SP> {
     return class ComponentWithStore extends Component {
-      constructor(props: Omit<P, keyof SP>) {
-        let previousState = mapStateToProps(store.getState());
-
-        super({ ...props, ...previousState });
+      constructor(props: Omit<P, keyof SP> & SP) {
+        const stateProps = mapStateToProps(store.getState());
+        super({ ...props, ...stateProps });
 
         store.on(StoreEvents.Updated, () => {
-          const stateProps = mapStateToProps(store.getState());
-
-          previousState = stateProps;
-
-          this.setProps({ ...stateProps } as SP & P);
+          const newStateProps = mapStateToProps(store.getState());
+          this.setProps({ ...newStateProps });
         });
       }
     };
