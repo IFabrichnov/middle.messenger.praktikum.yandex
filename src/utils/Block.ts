@@ -1,12 +1,9 @@
 import EventBus from './EventBus.ts';
 import { v4 as makeUUID } from 'uuid';
+import isEqual from './isEqual.ts'
+import { BlockProps } from '../types/blockProps.ts';
 
-interface BlockProps {
-  events?: Record<string, () => void>;
-  [key: string]: unknown;
-}
-
-class Block<P extends BlockProps = {}> {
+class Block<P extends BlockProps = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -20,7 +17,7 @@ class Block<P extends BlockProps = {}> {
   public id = makeUUID();
   public children: Record<string, Block | Block[]>;
 
-  constructor(initialProps: P = {} as P) {
+  constructor(initialProps?: BlockProps) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(initialProps);
@@ -35,19 +32,21 @@ class Block<P extends BlockProps = {}> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: P) {
+  _getChildrenAndProps(childrenAndProps?: BlockProps) {
     const props: Record<string, unknown> = {};
     const children: Record<string, Block | Block[]> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (Array.isArray(value) && value.length > 0 && value.every((v) => v instanceof Block)) {
-        children[key as string] = value;
-      } else if (value instanceof Block) {
-        children[key as string] = value;
-      } else {
-        props[key] = value;
-      }
-    });
+    if (childrenAndProps) {
+      Object.entries(childrenAndProps).forEach(([key, value]) => {
+        if (Array.isArray(value) && value.length > 0 && value.every((v) => v instanceof Block)) {
+          children[key as string] = value;
+        } else if (value instanceof Block) {
+          children[key as string] = value;
+        } else {
+          props[key] = value;
+        }
+      });
+    }
 
     return { props: props as P, children };
   }
@@ -113,7 +112,7 @@ class Block<P extends BlockProps = {}> {
   }
 
   protected componentDidUpdate(oldProps: P, newProps: P) {
-    return true || oldProps !== newProps;
+    return !isEqual(oldProps, newProps);
   }
 
   setProps = (nextProps: Partial<P>) => {
@@ -212,7 +211,7 @@ class Block<P extends BlockProps = {}> {
       },
     });
   }
-  
+
   show() {
     this.getContent()!.style.display = 'block';
   }

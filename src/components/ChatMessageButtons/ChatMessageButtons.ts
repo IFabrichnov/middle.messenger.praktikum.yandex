@@ -1,31 +1,33 @@
-import template from './chatMessageButtons.hbs';
+import template from './ChatMessageButtons.hbs';
 import Block from '../../utils/Block.ts';
 import Input from '../../components/Input/Input';
 import { validatorMessage } from '../../utils/validators.ts';
-import './chatMessageButtons.pcss';
+import { BlockProps } from '../../types/blockProps.ts';
+import './ChatMessageButtons.pcss';
+import MessageController from '../../controllers/MessageController.ts';
 
-export default class ChatMessageButtons extends Block {
+interface IProps extends BlockProps {
+  selectedChat?: number;
+}
+export default class ChatMessageButtons extends Block<IProps> {
   constructor() {
     super({
       Input: new Input({
         id: 'message',
         name: 'message',
         type: 'text',
-        className: 'chat-controls__input',
+        className: 'chat-message__input',
         placeholder: 'Сообщение',
       }),
       events: {
-        submit: (event: any) => {
+        submit: (event) => {
           event.preventDefault();
           const formData = new FormData(event.target as HTMLFormElement);
           const values = Object.fromEntries(formData as any);
 
-          if (!validatorMessage(values.message)) {
-            console.log('Пустое сообщение');
-            return;
+          if (validatorMessage(values.message) && this.props.selectedChat) {
+            MessageController.sendMessage(this.props.selectedChat, values.message);
           }
-
-          console.log(values);
         },
       },
     });

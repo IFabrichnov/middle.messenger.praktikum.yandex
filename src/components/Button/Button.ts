@@ -1,15 +1,16 @@
 import Block from '../../utils/Block';
 import template from './button.hbs';
 import './button.pcss';
+import { BlockProps } from "../../types/blockProps.ts";
 
-interface IProps {
+interface IProps extends BlockProps{
   text: string;
   className?: string;
-  type?: 'submit' | 'button';
+  type?: 'submit' | 'button' | 'reset';
   onClick?: EventListener;
 }
 
-export default class Button extends Block {
+export default class Button extends Block<IProps> {
   constructor(props: IProps) {
     super({
       ...props,

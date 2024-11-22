@@ -6,7 +6,7 @@
     <div class="profile-main">
       <div class="profile-avatar">
         <div class="profile-settings-avatar">
-          <img src="../avatar.png" alt="avatar">
+          <img class="profile__avatar" src="{{#if avatar}}https://ya-praktikum.tech/api/v2/resources{{avatar}}{{else}}/avatar.png{{/if}}" alt="Avatar"/>
           <span class="profile-settings-avatar-text">Поменять<br>аватар</span>
         </div>
         <input name="avatar" type="file" id="avatar-upload" style="display: none;" />

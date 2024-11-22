@@ -1,5 +1,4 @@
 import Block from '../../utils/Block.ts';
-import render from '../../utils/render.ts';
 import template from './profileSettings.hbs';
 import Button from '../../components/Button/Button.ts';
 import Ref from '../../components/Ref/Ref.ts';
@@ -12,17 +11,28 @@ import {
   validatorPassword, validatorPhone,
   validatorSecondName
 } from '../../utils/validators.ts';
+import { BlockProps } from '../../types/blockProps.ts';
+import { IUser } from '../../api/authAPI.ts';
+import { componentWithStore } from '../../utils/Store.ts';
+import UserController from '../../controllers/UserController.ts';
+import { EditPassword } from '../../api/userAPI.ts';
 
-export default class ProfileSettings extends Block {
-  constructor() {
+interface IProps extends BlockProps {
+  user: IUser;
+}
+
+class ProfileSettings extends Block<IProps> {
+  constructor(props: IProps)  {
     super(
       {
+        avatar: props.user?.avatar,
         ProfileFieldsSettings: [
           new FormField({
             label: 'Почта',
             name: 'email',
             type: 'email',
-            placeholder: 'ifabrichnov@yandex.ru',
+            placeholder: props.user.email,
+            value: props.user.email,
             errorText: 'Латиница, может включать цифры и спецсимволы вроде дефиса и подчёркивания, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -40,7 +50,8 @@ export default class ProfileSettings extends Block {
             label: 'Логин',
             name: 'login',
             type: 'text',
-            placeholder: 'woodyh92',
+            placeholder: props.user.login,
+            value: props.user.login,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -58,7 +69,8 @@ export default class ProfileSettings extends Block {
             label: 'Имя',
             name: 'first_name',
             type: 'text',
-            placeholder: 'Иван',
+            placeholder: props.user.first_name,
+            value: props.user.first_name,
             errorText: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -76,7 +88,8 @@ export default class ProfileSettings extends Block {
             label: 'Фамилия',
             name: 'second_name',
             type: 'text',
-            placeholder: 'Фабричнов',
+            placeholder: props.user.second_name,
+            value: props.user.second_name,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -94,7 +107,8 @@ export default class ProfileSettings extends Block {
             label: 'Имя в чате',
             name: 'display_name',
             type: 'text',
-            placeholder: 'woodyh92',
+            placeholder: props.user.display_name,
+            value: props.user.display_name,
             errorText: 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -112,7 +126,8 @@ export default class ProfileSettings extends Block {
             label: 'Телефон',
             name: 'phone',
             type: 'tel',
-            placeholder: '+7 (999) 999 99 99',
+            placeholder: props.user.phone,
+            value: props.user.phone,
             errorText: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -131,9 +146,7 @@ export default class ProfileSettings extends Block {
         Ref: new Ref({
           className: 'back-profile-button',
           Content: '<img src="../back-profile-button.png" alt="Назад"/>',
-          onClick: () => {
-            render('main');
-          },
+          href: '/profile'
         }),
 
         PasswordInputs: [
@@ -168,23 +181,6 @@ export default class ProfileSettings extends Block {
                 this.setError('oldPassword', true);
               } else {
                 this.setError('oldPassword', false);
-              }
-            },
-          }),
-          new FormField({
-            name: 'repeatNewPassword',
-            type: 'password',
-            label: 'Повторите новый пароль',
-            placeholder: '********',
-            errorText: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
-            className: 'form__input_settings',
-            onBlur: (event) => {
-              const { value } = (event.target as HTMLInputElement);
-
-              if (!validatorPassword(value)) {
-                this.setError('repeatNewPassword', true);
-              } else {
-                this.setError('repeatNewPassword', false);
               }
             },
           }),
@@ -224,13 +220,19 @@ export default class ProfileSettings extends Block {
               return;
             }
 
-            console.log(values);
-            render('profile');
+            if (!validatorFailed) {
+              UserController.editProfile(values as IUser);
+              UserController.editPassword(values as EditPassword);
+            }
           },
         },
       },
     );
     this.profileSettingsAvatarClickHandler();
+  }
+
+  protected componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    return super.componentDidUpdate(oldProps, newProps);
   }
 
   profileSettingsAvatarClickHandler() {
@@ -240,6 +242,24 @@ export default class ProfileSettings extends Block {
     if (avatarElement && fileInput) {
       avatarElement.addEventListener('click', () => {
         fileInput.click();
+      });
+
+      fileInput.addEventListener('change', async (event) => {
+        const target = event.target as HTMLInputElement;
+        const file = target.files?.[0];
+
+        if (file) {
+          const formData = new FormData();
+          formData.append('avatar', file);
+
+          try {
+            await UserController.editAvatar(formData);
+
+            console.log('Avatar updated successfully!');
+          } catch (e) {
+            console.error('Error uploading avatar:', e);
+          }
+        }
       });
     }
   }
@@ -282,3 +302,6 @@ export default class ProfileSettings extends Block {
     return this.compile(template, this.props);
   }
 }
+
+const withUser = componentWithStore((state) => ({ user: state.user }));
+export default withUser(ProfileSettings);

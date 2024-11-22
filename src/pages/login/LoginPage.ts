@@ -4,8 +4,9 @@ import './loginPage.pcss';
 import template from './loginPage.hbs';
 import Ref from '../../components/Ref/Ref.ts';
 import Block from '../../utils/Block.ts';
-import render from '../../utils/render.ts';
 import { validatorLogin, validatorPassword } from '../../utils/validators.ts';
+import AuthController from '../../controllers/AuthController.ts';
+import { ISignInData } from '../../api/authAPI.ts';
 
 export default class LoginPage extends Block {
   constructor() {
@@ -52,9 +53,7 @@ export default class LoginPage extends Block {
       Ref: new Ref({
         className: 'ref ref_center',
         Content: 'Нет аккаунта?',
-        onClick: () => {
-          render('register');
-        },
+        href: '/sign-up',
       }),
       events: {
         submit: (event: any) => {
@@ -80,9 +79,7 @@ export default class LoginPage extends Block {
           if (validatorFailed) {
             return;
           }
-
-          console.log(values);
-          render('main');
+          AuthController.signin(values as ISignInData);
         },
       },
     });

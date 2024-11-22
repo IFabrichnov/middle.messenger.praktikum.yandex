@@ -5,8 +5,8 @@
   <div class="profile-section">
     <div class="profile-main">
       <div class="avatar-image">
-        <img src="../avatar.png" alt="avatar">
-        <h1 class="profile-name">Иван</h1>
+        <img class="profile__avatar" src="{{#if avatar}}https://ya-praktikum.tech/api/v2/resources{{avatar}}{{else}}/avatar.png{{/if}}" alt="Avatar"/>
+        <h1 class="profile-name">{{ userName }}</h1>
       </div>
       <div class="profile-info">
         {{# each ProfileFields}}
@@ -16,9 +16,7 @@
     </div>
 
     <div class="profile-actions">
-      {{# each SettingsRefs}}
-        {{{this}}}
-      {{/each}}
+      {{{SettingsRef}}}
       {{{ ExitRef }}}
     </div>
   </div>

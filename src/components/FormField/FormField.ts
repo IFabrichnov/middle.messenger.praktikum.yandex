@@ -2,8 +2,9 @@ import Block from '../../utils/Block.ts';
 import Input from '../Input/Input';
 import template from './formField.hbs';
 import './formField.pcss';
+import { BlockProps } from '../../types/blockProps.ts';
 
-interface IProps {
+interface IProps extends BlockProps {
   label: string;
   name: string;
   type: string;
@@ -12,9 +13,11 @@ interface IProps {
   errorText?: string;
   placeholder?: string;
   onBlur?: EventListener;
+  accept?: string;
+  value?: string;
 }
 
-export default class FormField extends Block {
+export default class FormField extends Block<IProps> {
   constructor(props: IProps) {
     super({
       error: props.error,
@@ -23,6 +26,8 @@ export default class FormField extends Block {
       className: props.className,
       Input: new Input(
         {
+          value: props.value,
+          accept: props.accept,
           name: props.name,
           type: props.type,
           className: props.className,
