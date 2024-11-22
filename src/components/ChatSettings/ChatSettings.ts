@@ -4,7 +4,7 @@ import { BlockProps } from '../../types/blockProps.ts';
 import Button from '../../components/Button/Button';
 import Ref from '../../components/Ref/Ref.ts';
 import ChatController from '../../controllers/ChatController';
-import './chatSettings.pcss';
+import './ChatSettings.pcss';
 import UserGroup from '../UserGroup/UserGroup.ts';
 import { IUser } from '../../api/authAPI.ts';
 import AddUserForm from '../../components/AddUserForm/AddUserForm';
