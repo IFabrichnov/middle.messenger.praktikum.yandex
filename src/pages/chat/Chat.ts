@@ -18,7 +18,7 @@ interface IProps extends BlockProps {
   user: IUser;
 }
 
-class Chat extends Block<IProps> {
+class Chat extends Block {
   constructor(props: IProps) {
     const messages = props.selectedChat ? props.messages[props.selectedChat] : [];
 

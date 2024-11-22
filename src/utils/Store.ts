@@ -38,10 +38,8 @@ export class Store extends EventBus {
 
 const store = new Store();
 
-(window as any).store = store;
-
 export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
-  return function wrap<P extends BlockProps>(Component: typeof Block<P>) {
+  return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
     return class ComponentWithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
         let previousState = mapStateToProps(store.getState());
@@ -53,7 +51,7 @@ export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
 
           previousState = stateProps;
 
-          this.setProps({ ...stateProps } as P & SP); // Типизация пропсов
+          this.setProps({ ...stateProps } as SP & P);
         });
       }
     };

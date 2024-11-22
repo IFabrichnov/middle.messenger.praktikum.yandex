@@ -21,7 +21,7 @@ interface IProps extends BlockProps {
   user: IUser;
 }
 
-class ProfileSettings extends Block<IProps> {
+class ProfileSettings extends Block  {
   constructor(props: IProps)  {
     super(
       {
