@@ -1,5 +1,5 @@
 import Block from '../../utils/Block.ts';
-import template from './chatSettings.hbs';
+import template from './ChatSettings.hbs';
 import { BlockProps } from '../../types/blockProps.ts';
 import Button from '../../components/Button/Button';
 import Ref from '../../components/Ref/Ref.ts';
