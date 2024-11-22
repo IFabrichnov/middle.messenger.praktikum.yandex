@@ -39,14 +39,14 @@ export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
   return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
     return class ComponentWithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
-        let prevState = mapStateToProps(store.getState());
+        let previousState = mapStateToProps(store.getState());
 
-        super({ ...(props as P), ...prevState });
+        super({ ...props, ...previousState });
 
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-          prevState = stateProps;
+          previousState = stateProps;
 
           this.setProps({ ...stateProps } as SP & P);
         });
