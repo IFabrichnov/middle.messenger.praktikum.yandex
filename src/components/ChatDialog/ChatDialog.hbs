@@ -1,0 +1,17 @@
+<div class="chat-dialog">
+  {{{ ModalWindow }}}
+  {{#if selectedChat }}
+    <div class="chat-dialog__header">
+      <img class="chat-dialog__avatar" src="{{#if
+        selectedChat.avatar}}https://ya-praktikum.tech/api/v2/resources{{selectedChat.avatar}}{{else}}/avatar.png{{/if}}"
+           alt="Avatar"/>
+      <p class="chat-dialog__name">{{ selectedChat.title }}</p>
+      {{{ EtcButton }}}
+    </div>
+  {{/if}}
+  <ul class="chat-dialog__messages" id="message-thread">
+    {{#each Messages }}
+      {{{this}}}
+    {{/each}}
+  </ul>
+</div>

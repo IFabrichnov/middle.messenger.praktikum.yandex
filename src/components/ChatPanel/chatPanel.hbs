@@ -1,0 +1,14 @@
+<div class="panel">
+  {{{ ModalWindow }}}
+  {{{ Ref }}}
+  {{{ CreateButton }}}
+  <div class="search">
+    <label for="search" class="search__label">Поиск</label>
+    <input id="search" class="search__input" name="search_query" type="text" placeholder="Поиск"/>
+  </div>
+  <ul class="chat-items">
+    {{# each ChatItems}}
+      {{{ this }}}
+    {{/each}}
+  </ul>
+</div>

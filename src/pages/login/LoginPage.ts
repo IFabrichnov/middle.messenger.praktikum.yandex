@@ -79,7 +79,6 @@ export default class LoginPage extends Block {
           if (validatorFailed) {
             return;
           }
-          console.log(values)
           AuthController.signin(values as ISignInData);
         },
       },
