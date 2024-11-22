@@ -20,8 +20,13 @@ interface State {
 export class Store extends EventBus {
   private state: any = {};
 
-  public set(path: string, value: unknown) {
-    set(this.state, path, value);
+  constructor() {
+    super();
+    this.on(StoreEvents.Updated, () => {});
+  }
+
+  public set(keypath: string, data: unknown) {
+    set(this.state, keypath, data);
 
     this.emit(StoreEvents.Updated, this.getState());
   }
@@ -33,20 +38,18 @@ export class Store extends EventBus {
 
 const store = new Store();
 
-(window as any).store = store;
-
 export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
   return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
     return class ComponentWithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
-        let prevState = mapStateToProps(store.getState());
+        let previousState = mapStateToProps(store.getState());
 
-        super({ ...(props as P), ...prevState });
+        super({ ...props, ...previousState });
 
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-          prevState = stateProps;
+          previousState = stateProps;
 
           this.setProps({ ...stateProps } as SP & P);
         });

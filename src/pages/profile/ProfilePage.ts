@@ -22,7 +22,7 @@ const profileData = {
   phone: 'Телефон',
 };
 
-class ProfilePage extends Block<IProps> {
+class ProfilePage extends Block {
   constructor(props: IProps) {
     super({
       avatar: props.user?.avatar,
