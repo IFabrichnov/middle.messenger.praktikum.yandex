@@ -2,7 +2,7 @@ import Block from '../../utils/Block.ts';
 import Button from '../Button/Button';
 import { BlockProps } from '../../types/blockProps.ts';
 import FormField from '../FormField/FormField.ts';
-import template from './addUserForm.hbs';
+import template from './AddUserForm.hbs';
 
 interface IProps extends BlockProps {
   onSubmit: EventListener;
