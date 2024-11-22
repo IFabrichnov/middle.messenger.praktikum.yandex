@@ -40,9 +40,9 @@ const store = new Store();
 
 (window as any).store = store;
 
-export function withStore<SP>(mapStateToProps: (state: State) => SP) {
+export function componentWithStore<SP>(mapStateToProps: (state: State) => SP) {
   return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
-    return class WithStore extends Component {
+    return class ComponentWithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
         let previousState = mapStateToProps(store.getState());
 
