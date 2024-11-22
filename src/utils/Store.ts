@@ -20,8 +20,13 @@ interface State {
 export class Store extends EventBus {
   private state: any = {};
 
-  public set(path: string, value: unknown) {
-    set(this.state, path, value);
+  constructor() {
+    super();
+    this.on(StoreEvents.Updated, () => {});
+  }
+
+  public set(keypath: string, data: unknown) {
+    set(this.state, keypath, data);
 
     this.emit(StoreEvents.Updated, this.getState());
   }
@@ -35,20 +40,20 @@ const store = new Store();
 
 (window as any).store = store;
 
-export function componentWithStore<SP extends Partial<State>>(
-    mapStateToProps: (state: State) => SP
-) {
-  return function wrap<P extends BlockProps>(
-      Component: typeof Block<P>
-  ): new (props: Omit<P, keyof SP> & SP) => Block<Omit<P, keyof SP> & SP> {
-    return class ComponentWithStore extends Component {
-      constructor(props: Omit<P, keyof SP> & SP) {
-        const stateProps = mapStateToProps(store.getState());
-        super({ ...props, ...stateProps });
+export function withStore<SP>(mapStateToProps: (state: State) => SP) {
+  return function wrap<P extends BlockProps, SP>(Component: typeof Block<P>) {
+    return class WithStore extends Component {
+      constructor(props: Omit<P, keyof SP>) {
+        let previousState = mapStateToProps(store.getState());
+
+        super({ ...props, ...previousState });
 
         store.on(StoreEvents.Updated, () => {
-          const newStateProps = mapStateToProps(store.getState());
-          this.setProps({ ...newStateProps });
+          const stateProps = mapStateToProps(store.getState());
+
+          previousState = stateProps;
+
+          this.setProps({ ...stateProps } as SP & P);
         });
       }
     };
