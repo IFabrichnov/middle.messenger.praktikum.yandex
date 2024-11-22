@@ -14,6 +14,8 @@ import {
 import { BlockProps } from '../../types/blockProps.ts';
 import { IUser } from '../../api/authAPI.ts';
 import { componentWithStore } from '../../utils/Store.ts';
+import UserController from '../../controllers/UserController.ts';
+import { EditPassword } from '../../api/userAPI.ts';
 
 interface IProps extends BlockProps {
   user: IUser;
@@ -23,6 +25,7 @@ class ProfileSettings extends Block<IProps> {
   constructor(props: IProps)  {
     super(
       {
+        avatar: props.user?.avatar,
         ProfileFieldsSettings: [
           new FormField({
             label: 'Почта',
@@ -151,8 +154,7 @@ class ProfileSettings extends Block<IProps> {
             name: 'newPassword',
             type: 'password',
             label: 'Новый пароль',
-            placeholder: props.user.phone,
-            value: props.user.phone,
+            placeholder: '********',
             errorText: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
             className: 'form__input_settings',
             onBlur: (event) => {
@@ -179,23 +181,6 @@ class ProfileSettings extends Block<IProps> {
                 this.setError('oldPassword', true);
               } else {
                 this.setError('oldPassword', false);
-              }
-            },
-          }),
-          new FormField({
-            name: 'repeatNewPassword',
-            type: 'password',
-            label: 'Повторите новый пароль',
-            placeholder: '********',
-            errorText: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
-            className: 'form__input_settings',
-            onBlur: (event) => {
-              const { value } = (event.target as HTMLInputElement);
-
-              if (!validatorPassword(value)) {
-                this.setError('repeatNewPassword', true);
-              } else {
-                this.setError('repeatNewPassword', false);
               }
             },
           }),
@@ -235,13 +220,19 @@ class ProfileSettings extends Block<IProps> {
               return;
             }
 
-            console.log(values);
-            // render('profile');
+            if (!validatorFailed) {
+              UserController.editProfile(values as IUser);
+              UserController.editPassword(values as EditPassword);
+            }
           },
         },
       },
     );
     this.profileSettingsAvatarClickHandler();
+  }
+
+  protected componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    return super.componentDidUpdate(oldProps, newProps);
   }
 
   profileSettingsAvatarClickHandler() {
@@ -251,6 +242,24 @@ class ProfileSettings extends Block<IProps> {
     if (avatarElement && fileInput) {
       avatarElement.addEventListener('click', () => {
         fileInput.click();
+      });
+
+      fileInput.addEventListener('change', async (event) => {
+        const target = event.target as HTMLInputElement;
+        const file = target.files?.[0];
+
+        if (file) {
+          const formData = new FormData();
+          formData.append('avatar', file);
+
+          try {
+            await UserController.editAvatar(formData);
+
+            console.log('Avatar updated successfully!');
+          } catch (e) {
+            console.error('Error uploading avatar:', e);
+          }
+        }
       });
     }
   }
