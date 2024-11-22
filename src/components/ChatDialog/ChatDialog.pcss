@@ -1,0 +1,59 @@
+.chat-dialog {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(2, min-content) auto;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 6px;
+    align-items: center;
+  }
+
+  &__date-separator {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  &__name {
+    margin-left: 16px;
+  }
+
+  &__avatar {
+    height: 32px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 99px;
+  }
+
+  &__etc-button {
+    margin-left: auto;
+    border-radius: 32px;
+    aspect-ratio: 1;
+    padding: 6px;
+    width: 32px;
+    align-items: center;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #EAEAEA;
+    }
+  }
+
+  &__messages {
+    height: 100%;
+    overflow-y: scroll;
+
+    & > :first-child {
+      margin-top: auto !important;
+    }
+
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+  }
+}
