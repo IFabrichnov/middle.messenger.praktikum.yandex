@@ -11,16 +11,10 @@
         </div>
         <input name="avatar" type="file" id="avatar-upload" style="display: none;" />
       </div>
-      <form method="POST" class="settings__form">
-          {{# each ProfileFieldsSettings }}
-            {{{this}}}
-          {{/each}}
-          <div class="padding-settings"></div>
-          {{# each PasswordInputs}}
-            {{{this}}}
-          {{/each}}
-          {{{ Button }}}
-      </form>
+          {{{ProfileSettings }}}
+          <div class="padding-settings">
+            {{{PasswordForm}}}
+          </div>
     </div>
   </div>
 </div>
