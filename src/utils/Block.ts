@@ -3,6 +3,10 @@ import { v4 as makeUUID } from 'uuid';
 import isEqual from './isEqual.ts'
 import { BlockProps } from '../types/blockProps.ts';
 
+interface Children {
+  [key: string]: Block | Block[]
+}
+
 class Block<P extends BlockProps = any> {
   static EVENTS = {
     INIT: 'init',
@@ -15,7 +19,7 @@ class Block<P extends BlockProps = any> {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   public id = makeUUID();
-  public children: Record<string, Block | Block[]>;
+  public children: Children;
 
   constructor(initialProps?: BlockProps) {
     const eventBus = new EventBus();
@@ -34,7 +38,7 @@ class Block<P extends BlockProps = any> {
 
   _getChildrenAndProps(childrenAndProps?: BlockProps) {
     const props: Record<string, unknown> = {};
-    const children: Record<string, Block | Block[]> = {};
+    const children: Children = {};
 
     if (childrenAndProps) {
       Object.entries(childrenAndProps).forEach(([key, value]) => {

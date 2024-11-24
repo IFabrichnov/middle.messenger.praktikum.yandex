@@ -27,6 +27,9 @@ export default class ChatMessageButtons extends Block<IProps> {
 
           if (validatorMessage(values.message) && this.props.selectedChat) {
             MessageController.sendMessage(this.props.selectedChat, values.message);
+
+            const inputElement = (this.children.Input as Input).getContent() as HTMLInputElement;
+            inputElement.value = '';
           }
         },
       },
