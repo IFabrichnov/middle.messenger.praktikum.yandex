@@ -1,0 +1,12 @@
+<li class="user-group-item">
+  <span class="user-group-item__login">
+    {{#if login }}
+      {{ login }} {{#unless deletable}}(Вы){{/unless}}
+    {{else}}
+      &lt;Неизвестно&gt;
+    {{/if}}
+  </span>
+  {{#if deletable }}
+    {{{ DeleteButton }}}
+  {{/if}}
+</li>

@@ -1,0 +1,23 @@
+<div class="profile-container">
+  <div class="profile-back">
+    {{{ Ref }}}
+  </div>
+  <div class="profile-section">
+    <div class="profile-main">
+      <div class="avatar-image">
+        <img class="profile__avatar" src="{{#if avatar}}https://ya-praktikum.tech/api/v2/resources{{avatar}}{{else}}/avatar.png{{/if}}" alt="Avatar"/>
+        <h1 class="profile-name">{{ userName }}</h1>
+      </div>
+      <div class="profile-info">
+        {{# each ProfileFields}}
+          {{{this}}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      {{{SettingsRef}}}
+      {{{ ExitRef }}}
+    </div>
+  </div>
+</div>
