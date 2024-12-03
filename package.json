@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "description": "messenger-in-js",
   "main": "index.js",
+  "type": "module",
   "engines": {
     "node": "20.0.0"
   },
   "scripts": {
     "dev": "vite",
-    "start": "vite build && npm run build:server && npm run serve",
-    "build": "tsc && vite build",
-    "build:server": "tsc src/server.ts --esModuleInterop --outDir dist",
+    "start": "npm run build && npm run serve",
     "preview": "vite preview",
-    "serve": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node dist/server.cjs",
+    "test": "mocha",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build",
+    "build:server": "tsc --project tsconfig.server.json",
     "lint": "eslint . && stylelint \"**/*.pcss\"",
-    "lint:typescript": "tsc --noEmit"
+    "lint:typescript": "tsc --noEmit",
+    "lint-fix": "eslint \"**/*.{js,ts}\" --fix && stylelint \"**/*.pcss\" --fix",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -33,22 +37,23 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.7.7",
     "@types/sinon": "^17.0.3",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.11.0",
-    "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
     "chai": "^5.1.2",
+    "create-esm-loader": "^0.2.5",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.31.0",
-    "esm-css-loader": "^1.0.8",
+    "esm-loader-css": "^1.0.6",
     "esm-loader-typescript": "^1.0.6",
-    "node-esm-loader": "^0.3.0",
     "esmock": "^2.6.9",
     "handlebars": "^4.7.8",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
     "mocha": "^10.8.2",
+    "node-esm-loader": "^0.3.0",
     "postcss": "^8.4.47",
     "postcss-nested": "^6.2.0",
     "sinon": "^19.0.2",
@@ -59,7 +64,6 @@
   },
   "dependencies": {
     "express": "^4.21.0",
-    "uuid": "^10.0.0",
-    "vite-plugin-handlebars": "^2.0.0"
+    "uuid": "^10.0.0"
   }
 }

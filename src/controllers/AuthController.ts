@@ -1,5 +1,5 @@
 import router from '../utils/router/router.ts';
-import store from '../utils/Store';
+import store from '../utils/Store.ts';
 import AuthAPI, { ISignInData, ISignUpData } from '../api/authAPI.ts';
 
 

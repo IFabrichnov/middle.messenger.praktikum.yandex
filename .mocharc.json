@@ -1,0 +1,8 @@
+{
+  "extension": [".ts"],
+  "spec": "./src/**/*.test.ts",
+  "require": [
+    "./test-utils/mocha-setup.js",
+    "./test-utils/register-loaders.js"
+  ]
+}

@@ -2,8 +2,8 @@ import Block from '../../utils/Block.ts';
 import template from './userGroupItem.hbs';
 import { BlockProps } from '../../types/blockProps.ts';
 import { IUser } from '../../api/authAPI.ts';
-import Button from '../Button/Button';
-import ChatController from '../../controllers/ChatController';
+import Button from '../Button/Button.ts';
+import ChatController from '../../controllers/ChatController.ts';
 import './userGroupItem.pcss';
 
 interface IProps extends BlockProps{
