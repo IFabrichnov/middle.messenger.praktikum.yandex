@@ -10,7 +10,7 @@ import {
   validatorPhone,
   validatorSecondName
 } from '../../utils/validators.ts';
-import AuthController from '../../controllers/AuthController.ts';
+import AuthController from '../../controllers/AuthController/AuthController.ts';
 import { ISignUpData } from '../../api/authAPI.ts';
 
 export default class RegisterPage extends Block {

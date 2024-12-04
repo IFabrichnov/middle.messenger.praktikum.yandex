@@ -3,7 +3,7 @@ import Block from '../../utils/Block.ts';
 import Ref from '../../components/Ref/Ref.ts';
 import ProfileField from '../../components/ProfileField/ProfileField.ts';
 import '../../pages/profile/profilePage.pcss';
-import AuthController from '../../controllers/AuthController.ts';
+import AuthController from '../../controllers/AuthController/AuthController.ts';
 import { BlockProps } from '../../types/blockProps.ts';
 import { IUser } from '../../api/authAPI.ts';
 import { componentWithStore } from '../../utils/Store.ts';
