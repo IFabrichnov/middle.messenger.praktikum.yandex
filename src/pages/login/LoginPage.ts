@@ -5,7 +5,7 @@ import template from './loginPage.hbs';
 import Ref from '../../components/Ref/Ref.ts';
 import Block from '../../utils/Block.ts';
 import { validatorLogin, validatorPassword } from '../../utils/validators.ts';
-import AuthController from '../../controllers/AuthController.ts';
+import AuthController from '../../controllers/AuthController/AuthController.ts';
 import { ISignInData } from '../../api/authAPI.ts';
 
 export default class LoginPage extends Block {

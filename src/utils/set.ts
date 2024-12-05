@@ -1,4 +1,4 @@
-import merge from './merge';
+import merge from './merge.ts';
 
 type Indexed<T = any> = {
   [key in string]: T;

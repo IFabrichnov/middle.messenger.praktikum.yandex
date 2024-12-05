@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [ "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [ "@typescript-eslint" ],
+  "rules": {
+    "max-len": [ "error", 100 ],
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "import/no-extraneous-dependencies": "off",
+    "class-methods-use-this": "off",
+    "no-shadow": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-new": "off",
+    "no-useless-constructor": "warn",
+    "no-underscore-dangle": "off",
+    "consistent-return": "warn",
+    "no-param-reassign": "off",
+    "func-names": "off",
+    "no-console": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "arrow-body-style": "off",
+    "default-case": "warn",
+    "no-constructor-return": "off",
+    "no-use-before-define": "off",
+    "max-classes-per-file": "off",
+    "@typescript-eslint/no-this-alias": "off"
+  }
+}

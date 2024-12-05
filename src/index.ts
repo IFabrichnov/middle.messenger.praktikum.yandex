@@ -4,7 +4,7 @@ import RegisterPage from '../src/pages/register/RegisterPage.ts';
 import ProfilePage from '../src/pages/profile/ProfilePage.ts';
 import ProfileSettings from './pages/profileSettings/ProfileSettings.ts';
 import Chat from '../src/pages/chat/Chat.ts';
-import AuthController from "./controllers/AuthController";
+import AuthController from './controllers/AuthController/AuthController.ts';
 
 const enum Route {
   Login = '/',

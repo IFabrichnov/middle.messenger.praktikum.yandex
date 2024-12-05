@@ -36,6 +36,10 @@ export default class HTTPTransport {
     return this.request(this.endpoint + url, { method: RequestMethods.PUT, data });
   };
 
+  public patch: HTTPMethod = (url, data) => {
+    return this.request(this.endpoint + url, { method: RequestMethods.PATCH, data });
+  };
+
   public delete: HTTPMethod = (url, data) => {
     return this.request(this.endpoint + url, { method: RequestMethods.DELETE, data });
   };

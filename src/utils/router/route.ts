@@ -1,4 +1,5 @@
 import Block from '../Block.ts';
+import {BlockBuilder} from './router.ts';
 
 function render(query: string, block: Block) {
   const root = document.querySelector(query);
@@ -23,7 +24,7 @@ export default class Route {
 
   private readonly _query: string;
 
-  constructor(pathname: string, BlockClass: typeof Block, query: any) {
+  constructor(pathname: string, BlockClass: BlockBuilder, query: any) {
     this._pathname = pathname;
     this._blockClass = BlockClass;
     this._query = query;
