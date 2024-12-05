@@ -10,7 +10,8 @@
       "DOM"
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "mocha"
     ],
     "moduleResolution": "node",
     "strict": true,

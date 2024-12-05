@@ -1,8 +1,12 @@
 import Route from './route.ts';
 import Block from '../Block.ts';
 
+export interface BlockBuilder<P extends Record<string, unknown> = any> {
+  new(props: P): Block<P>;
+}
+
 class Router {
-  private static __instance: Router | null = null;
+  private static __instance?: Router | null = null;
 
   private routes: Route[] = [];
 
@@ -12,7 +16,7 @@ class Router {
 
   private history : History | undefined = window.history
 
-  constructor(rootQuery: string) {
+  constructor(rootQuery: string | undefined) {
     if (Router.__instance) {
       return Router.__instance;
     }
@@ -22,7 +26,13 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public reset() {
+    delete Router.__instance;
+
+    new Router(this._rootQuery);
+  }
+
+  public use(pathname: string, block: BlockBuilder) {
     const route = new Route(pathname, block, this._rootQuery);
     this.routes.push(route);
 

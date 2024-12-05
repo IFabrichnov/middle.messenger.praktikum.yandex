@@ -15,6 +15,7 @@
 - [1 Спринт](https://github.com/IFabrichnov/middle.messenger.praktikum.yandex/pull/1)
 - [2 Спринт](https://github.com/IFabrichnov/middle.messenger.praktikum.yandex/pull/2)
 - [3 Спринт](https://github.com/IFabrichnov/middle.messenger.praktikum.yandex/pull/3)
+- [4 Спринт](https://github.com/IFabrichnov/middle.messenger.praktikum.yandex/pull/4)
 
 ## ✅ Валидация для форм
 
@@ -59,4 +60,24 @@ npm run start
 Для запуска проекта в режиме разработки используйте
 ```
 npm run dev
+```
+Запуск сервера vite
+```
+npm run preview
+```
+Запуск unit-тестов
+```
+npm run test
+```
+Запуск express сервера
+```
+npm run serve
+```
+Production сборка проекта
+```
+npm run build
+```
+Сборка клиента
+```
+npm run build:client
 ```
