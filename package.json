@@ -16,7 +16,7 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
     "build:server": "tsc --project tsconfig.server.json",
-    "lint": "eslint . && stylelint \"**/*.pcss\"",
+    "lint": "eslint . --parser-options=ecmaVersion:2022,sourceType:module && stylelint \"**/*.pcss\"",
     "lint:typescript": "tsc --noEmit",
     "lint-fix": "eslint \"**/*.{js,ts}\" --fix && stylelint \"**/*.pcss\" --fix",
     "prepare": "husky install"
@@ -50,7 +50,7 @@
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.9",
     "handlebars": "^4.7.8",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
     "jsdom": "^25.0.1",
     "mocha": "^10.8.2",
     "node-esm-loader": "^0.3.0",
