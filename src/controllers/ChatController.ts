@@ -82,7 +82,7 @@ class ChatController {
 
   async getChatUsers(id: number) {
     try {
-      return this.api.getUsers(id);
+      return this.api.getuser(id);
     } catch (e: any) {
       console.error(e.message);
     }

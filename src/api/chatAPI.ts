@@ -34,7 +34,7 @@ export class ChatApi extends BaseAPI {
     return this.http.delete('/', { chatId: id });
   }
 
-  getUsers(id: number): Promise<Array<IUser & { role: string }>> {
+  getuser(id: number): Promise<Array<IUser & { role: string }>> {
     return this.http.get(`/${id}/users`);
   }
 
