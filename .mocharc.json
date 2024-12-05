@@ -2,7 +2,13 @@
   "extension": [".ts"],
   "spec": "./src/**/*.test.ts",
   "require": [
-    "./test-utils/mocha-setup.js",
-    "./test-utils/register-loaders.mjs"
+    "./test-utils/mocha-setup.js"
+  ],
+  "node-option": [
+    "loader=./test-utils/hb-loader.js",
+    "loader=node-esm-loader",
+    "loader=esm-loader-typescript",
+    "loader=esm-loader-css",
+    "loader=esmock"
   ]
 }
