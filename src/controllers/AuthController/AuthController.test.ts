@@ -20,7 +20,7 @@ describe('AuthController', async () => {
     AuthController = (await esmock('./AuthController', {
       '../../api/authAPI.ts': {
         default: new class {
-          getUser = mockFunctions.getuser;
+          getuser = mockFunctions.getuser;
 
           signin = mockFunctions.signin;
 
@@ -48,7 +48,7 @@ describe('AuthController', async () => {
   });
 
   describe('.fetchUser()', () => {
-    it('should invoke the APIs read() method', async () => {
+    it('should invoke the APIs getuser() method', async () => {
       await AuthController.fetchUser();
 
       expect(mockFunctions.getuser.called).to.be.true;
