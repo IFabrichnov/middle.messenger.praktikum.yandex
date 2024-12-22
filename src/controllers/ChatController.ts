@@ -1,5 +1,5 @@
 import API, { ChatApi } from '../api/chatAPI.ts';
-import store from '../utils/Store';
+import store from '../utils/Store.ts';
 import MessageController from './MessageController.ts';
 
 class ChatController {
@@ -82,7 +82,7 @@ class ChatController {
 
   async getChatUsers(id: number) {
     try {
-      return this.api.getUsers(id);
+      return this.api.getuser(id);
     } catch (e: any) {
       console.error(e.message);
     }

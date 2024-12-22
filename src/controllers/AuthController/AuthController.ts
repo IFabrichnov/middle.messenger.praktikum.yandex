@@ -1,6 +1,7 @@
-import router from '../utils/router/router.ts';
-import store from '../utils/Store';
-import AuthAPI, { ISignInData, ISignUpData } from '../api/authAPI.ts';
+import router from '../../utils/router/router.ts';
+import store from '../../utils/Store.ts';
+import AuthAPI, { ISignInData, ISignUpData } from '../../api/authAPI.ts';
+import MessageController from '../MessageController.ts';
 
 
 export class AuthController {
@@ -35,13 +36,14 @@ export class AuthController {
   }
 
   async fetchUser() {
-    const user = await this.api.getUser();
+    const user = await this.api.getuser();
     store.set('user', user);
   }
 
 
   async logout() {
     try {
+      MessageController.closeAll();
       await this.api.logout();
 
       router.go('/');

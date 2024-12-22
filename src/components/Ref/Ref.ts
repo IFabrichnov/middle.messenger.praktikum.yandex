@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../utils/Block.ts';
 import './ref.pcss';
 import template from './ref.hbs';
 import { withRouter } from '../../utils/router/withRouter.ts';
